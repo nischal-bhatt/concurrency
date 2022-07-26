@@ -1,0 +1,177 @@
+dilip
+instructor for course - software engineer - building software since 2008
+teaching since 2016
+need for parallel programming 
+fast performing code using functional style concurrency APIs in modern java
+parallel streams/completableFuture API in code
+nonblocking restful api client 
+parallelstreams and completable future api using junit 5
+===========================================================
+targetted - experienced java developers
+need to write code that executes faster
+need to write code that executes in parallel
+write non-blocking code - non blocking means asynchronous
+===========================================================
+prerequisites
+java 11 or higher
+java knowledge
+lambdas, streams,method reference 
+junit 
+intellij,eclipse or any other ide
+===========================================================
+course slides
+===========================================================
+why parallel and asynch programming?
+1. need to write code that executes faster
+2. improve performance of code
+3. hardware and software
+   1. hardware = multiple core = developer need to leverage multiple core = parallel programming = parallel streams
+   2. software = microservice architecture style = blocking i/o calls = asynchronous programming = completable future
+   3.  
+4. both of these involve threads
+   both of these use functional style of programming
+5. evolution of concurrency / parallelism APIs in java
+     1. 1996 - like 2003 : single core
+     2. 2004 onwards     : multicore
+     3. java 1 - threads
+     4. 2004 - java 5 - multicore - Threadpool, ExecutorService, Future, concurrent collections
+     5. 2011 - java 7 - data parallelism - fork/join framework
+     6. 2014 - java 8 - lambdas , streams, Parallel Streams, completable future
+     7. 2017 - java 9 - Flow API (reactive programming) pub sub 
+6.  current version is java 14 - 
+7.  
+
+Concurrency vs parallelism
+    CONCURRENCY
+1. two or more task can run simultaneously 
+   Threads 
+   does it mean are running in interleaved fashion or simultaneously
+   this depends on underlying core
+   if single core - interleaving
+   if multiple core - that means simultaneously
+   concurrency example using Threads 
+   
+   
+   ===========
+   
+public class Concurrency {
+
+	 private static String result = "";
+	 
+	 private static void hello()
+	 {
+		 result = result.concat("hello");
+	 }
+	 
+	 private static void world() 
+	 {
+		 result = result.concat("world");
+	 }
+	 
+	 public static void main(String[] args) throws InterruptedException
+	 {
+		 Thread hello = new Thread(()->hello());
+		 Thread world = new Thread(()->world());
+		 
+		 hello.start();
+		 world.start();
+		 
+		 hello.join();
+		 world.join();
+		 
+		 System.out.println("result is " + result);
+	 }
+}
+
+   ===========
+   
+2. Parallelism
+   literally running in parallel (no chance of interleaving)
+   decomposing the tasks in tasks - forking
+   executing these tasks in sequential
+   joining the result of the tasks 
+   fork/join 
+   
+   
+   =======
+   import java.util.List;
+import java.util.stream.Collectors;
+
+public class Concurrency {
+
+	public static void main(String[] args)
+	{
+		List<String> namesList = List.of("bob","jamie","jill","rick");
+		
+		System.out.println(namesList);
+		
+		List<String> namesListUpperCase = 
+				namesList.parallelStream()
+				.map(String::toUpperCase)
+				.collect(Collectors.toList());
+		
+		System.out.println(namesListUpperCase);
+				
+				
+		
+		
+	}
+}
+   =======
+   
+   concurrency - can run simultaneously
+   parallelism            - must run simultaneously
+   concurrency            - single core can
+      parallelism         - only multi core can
+               
+               
+3. 
+4.
+5.
+6.
+7.
+8.
+9.
+
+
+dilipsundarraj1/parallel-asynchorous-using-java
+master - download 
+final - complete code covered
+
+=========================
+
+threadpool
+ExecutorService
+Future 
+java 5
+
+theory lecture
+1. limitations of thread 
+   manually create, start, join the thread
+   threads are expensive
+   threadpool was created to solve this problem
+   
+threadpool is a group of threads 
+created and readily available to handle any work submitted to them
+threadpool will have a work queue and pulls work
+eg. T1 , T2 , T3 and T4 in the threadpool 
+benefits of threadpool ? 
+dun have to manually create, start threads
+achieve concurrency in your application 
+
+threadpool --> we need tasks for these threads to executor
+executorService --> java 5 --> asynch task execution engine
+                --> provides a way to asynchronously execute tasks and provides the results in a much simpler way compared to threads
+                --> course grained task based parallelism in java
+
+executoriservice worked together with the threadpool 
+executorservice has a workqueue 
+executorservice has a completionqueue
+
+client submits task
+task gets placed in workqueue
+u get a future in return (future is a reference to a result) 
+client reads the result from the completionQueue using the future reference
+
+
+
