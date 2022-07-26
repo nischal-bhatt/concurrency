@@ -187,4 +187,15 @@ shared work queue --> clients submit tasks
 then got worker threads 
 
 
+Streams API 
+1. java 8
+2. used to process a collection of objects
+3. stream() --> streams created --> 
+
+      
+
+4. streams API --> all the modern features that got introduced in java 8
+5. Parallel Streams --> allow code to run in parallel 
+6. run parallel Stream function instead of stream() function 
+7. 
 
