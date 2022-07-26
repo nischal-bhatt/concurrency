@@ -173,5 +173,18 @@ task gets placed in workqueue
 u get a future in return (future is a reference to a result) 
 client reads the result from the completionQueue using the future reference
 
+fork-join framework
+1. java 7
+2. extends executorService
+3. forkjoin framework is designed for data parallelism
+4. executorservice is designed for task based parallelism
+5. data parallelism is a concept where a given task is recursively split into subtasks until it reaches lease possible size and these tasks are executed in parallel
+6. forkjoin pool to support data parallelism 
+
+fork join pool 
+
+shared work queue --> clients submit tasks 
+then got worker threads 
+
 
 
